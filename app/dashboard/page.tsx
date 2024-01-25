@@ -4,6 +4,7 @@ import LatestInvoices from '@/app/ui/dashboard/latest-invoices';
 import { lusitana } from '@/app/ui/fonts';
 import { fetchRevenue, fetchLatestInvoices } from '@/app/lib/data';
 import TaskForm from '@/app/ui/tasks/task-form';
+import Calendar from '@/app/ui/calendar/calendar';
  
 export default async function Page() {
   const revenue = await fetchRevenue();
@@ -28,6 +29,7 @@ export default async function Page() {
         {<RevenueChart revenue={revenue}  />}
         {<LatestInvoices latestInvoices={latestInvoices} />}
         {<TaskForm pepe={latestInvoices} />}
+        {<Calendar pepe={latestInvoices} />}
       </div>
     </main>
   );
