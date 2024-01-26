@@ -180,9 +180,24 @@ const revenue = [
   { month: 'Dec', revenue: 4800 },
 ];
 
+const turnos = [
+  {
+  startdate: '2021-10-01 09:00:00',
+  enddate: '2021-10-01 10:00:00',
+  title: 'Turno 1',
+  },
+  {
+  startdate: '2021-10-01 10:00:00',
+  enddate: '2021-10-01 11:00:00',
+  title: 'Turno 2',
+  },
+];
+
+
 module.exports = {
   users,
   customers,
   invoices,
   revenue,
+  turnos,
 };

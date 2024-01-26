@@ -9,6 +9,12 @@ export type User = {
   password: string;
 };
 
+export type Turno = {
+  startdate: Date;
+  enddate: Date;
+  title: string;
+};
+
 export type Customer = {
   id: string;
   name: string;

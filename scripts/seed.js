@@ -4,6 +4,7 @@ const {
   customers,
   revenue,
   users,
+  turnos,
 } = require('../app/lib/placeholder-data.js');
 const bcrypt = require('bcrypt');
 
@@ -160,13 +161,53 @@ async function seedRevenue(client) {
   }
 }
 
+
+
+async function seedTurnos(client) {
+  try {
+    await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
+    // Create the "turnos" table if it doesn't exist
+    const createTable = await client.sql`
+      CREATE TABLE IF NOT EXISTS turnos (
+        startdate DATE NOT NULL,
+        enddate DATE NOT NULL,
+        title TEXT NOT NULL
+      );
+    `;
+
+    console.log(`Created "turnos" table`);
+console.log(turnos)
+    // Insert data into the "turnos" table
+    const insertedTurnos = await Promise.all(
+      turnos.map(async (turno) => {
+        return client.sql`
+        INSERT INTO turnos (startdate, enddate, title)
+        VALUES (${turno.startdate}, ${turno.enddate}, ${turno.title})
+      `;
+      }),
+    );
+
+    console.log(`Seeded ${insertedTurnos.length} turnos`);
+
+    return {
+      createTable,
+      users: insertedTurnos,
+    };
+  } catch (error) {
+    console.error('Error seeding turnos:', error);
+    throw error;
+  }
+}
+
+
 async function main() {
   const client = await db.connect();
 
-  await seedUsers(client);
+  /* await seedUsers(client);
   await seedCustomers(client);
   await seedInvoices(client);
-  await seedRevenue(client);
+  await seedRevenue(client); */
+  await seedTurnos(client);
 
   await client.end();
 }

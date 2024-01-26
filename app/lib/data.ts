@@ -7,6 +7,7 @@ import {
   LatestInvoiceRaw,
   User,
   Revenue,
+  Turno,
 } from './definitions';
 import { formatCurrency } from './utils';
 
@@ -227,5 +228,26 @@ export async function getUser(email: string) {
   } catch (error) {
     console.error('Failed to fetch user:', error);
     throw new Error('Failed to fetch user.');
+  }
+}
+
+export async function fetchTurnos() {
+  try {
+    const data = await sql<Turno>`
+      SELECT
+        startdate
+        enddate
+        title
+      FROM turnos
+    `;
+
+    const turnos = data.rows.map((turno) => ({
+      ...turno,
+    }));
+
+    return turnos[0];
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch invoice.');
   }
 }
