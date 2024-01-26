@@ -182,13 +182,17 @@ const revenue = [
 
 const turnos = [
   {
-  startdate: '2021-10-01 09:00:00',
-  enddate: '2021-10-01 10:00:00',
+  startdate: '2024-01-25',
+  starttime: '09:00:00',
+  enddate: '2024-01-25',
+  endtime: '10:00:00',
   title: 'Turno 1',
   },
   {
-  startdate: '2021-10-01 10:00:00',
-  enddate: '2021-10-01 11:00:00',
+  startdate: '2024-01-26',
+  starttime: '10:00:00',
+  enddate: '2024-01-27',
+  endtime: '11:00:00',
   title: 'Turno 2',
   },
 ];

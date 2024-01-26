@@ -233,21 +233,15 @@ export async function getUser(email: string) {
 
 export async function fetchTurnos() {
   try {
-    const data = await sql<Turno>`
-      SELECT
-        startdate
-        enddate
-        title
-      FROM turnos
-    `;
+    const data = await sql<Turno>`SELECT
+    CONCAT(TO_CHAR(startdate, 'YYYY-MM-DD'), ' ', TO_CHAR(starttime, 'HH24:MI:SS')) AS start,
+    CONCAT(TO_CHAR(enddate, 'YYYY-MM-DD'), ' ', TO_CHAR(endtime, 'HH24:MI:SS')) AS end,
+    title
+  FROM turnos;`;
 
-    const turnos = data.rows.map((turno) => ({
-      ...turno,
-    }));
-
-    return turnos[0];
+    return data.rows;
   } catch (error) {
     console.error('Database Error:', error);
-    throw new Error('Failed to fetch invoice.');
+    throw new Error('Failed to fetch turnos data.');
   }
 }

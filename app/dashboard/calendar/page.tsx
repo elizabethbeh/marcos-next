@@ -3,11 +3,13 @@ import { Calendar, dayjsLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import dayjs from "dayjs";
 import "dayjs/locale/es";
+import { useEffect, useState } from "react";
+import { unstable_noStore as noStore } from 'next/cache';
 
 dayjs.locale("es");
 
 const localizer = dayjsLocalizer(dayjs);
-const events = [
+/* const events = [
     {
       title: "Evento 1",
       start: new Date(2024, 0, 25, 10, 0), // Año, mes (enero es 0), día, hora, minutos
@@ -43,9 +45,28 @@ const events = [
       start: new Date(2024, 0, 29, 22, 0),
       end: new Date(2024, 0, 29, 23, 59),
     },
-  ];
+  ]; */
 
+
+  
 export default function Page() {
+  noStore();
+  const [events, setEvents] = useState([]);  
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch('/api');
+      const apiEvents = await response.json();
+
+     
+
+      console.log(apiEvents["data"]);
+      setEvents(apiEvents["data"]);
+    }
+
+    fetchData();
+  }, []);
+  
   return (
     <div>
       <Calendar

@@ -11,7 +11,9 @@ export type User = {
 
 export type Turno = {
   startdate: Date;
+  starttime: String;
   enddate: Date;
+  endtime: String;
   title: string;
 };
 

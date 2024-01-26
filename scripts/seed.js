@@ -170,19 +170,20 @@ async function seedTurnos(client) {
     const createTable = await client.sql`
       CREATE TABLE IF NOT EXISTS turnos (
         startdate DATE NOT NULL,
+        starttime TIME NOT NULL,
         enddate DATE NOT NULL,
+        endtime TIME NOT NULL,
         title TEXT NOT NULL
       );
     `;
 
     console.log(`Created "turnos" table`);
-console.log(turnos)
     // Insert data into the "turnos" table
     const insertedTurnos = await Promise.all(
       turnos.map(async (turno) => {
         return client.sql`
-        INSERT INTO turnos (startdate, enddate, title)
-        VALUES (${turno.startdate}, ${turno.enddate}, ${turno.title})
+        INSERT INTO turnos (startdate,starttime, enddate,endtime, title)
+        VALUES (${turno.startdate},${turno.starttime}, ${turno.enddate},${turno.endtime}, ${turno.title})
       `;
       }),
     );
@@ -203,10 +204,10 @@ console.log(turnos)
 async function main() {
   const client = await db.connect();
 
-  /* await seedUsers(client);
+  await seedUsers(client);
   await seedCustomers(client);
   await seedInvoices(client);
-  await seedRevenue(client); */
+  await seedRevenue(client);
   await seedTurnos(client);
 
   await client.end();
