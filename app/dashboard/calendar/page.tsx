@@ -20,7 +20,7 @@ export default function Page() {
       const apiEvents = await response.json();
 
       
-      const formattedEvents = apiEvents.data.map(event => ({
+      const formattedEvents = apiEvents.data.map((event: { start: string | number | Date; end: string | number | Date; }) => ({
         ...event,
         start: new Date(event.start),
         end: new Date(event.end),
