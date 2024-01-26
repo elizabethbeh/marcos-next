@@ -43,35 +43,30 @@ const events = [
       start: new Date(2024, 0, 29, 22, 0),
       end: new Date(2024, 0, 29, 23, 59),
     },
-
-
   ];
 
-
 export default function Page() {
-
-
   return (
     <div>
       <Calendar
-      messages={{
-        next: "Siguiente",
-        previous: "Anterior",
-        today: "Hoy",
-        month: "Mes",
-        week: "Semana",
-        day: "Día",
-      }}
+        messages={{
+          next: "Siguiente",
+          previous: "Anterior",
+          today: "Hoy",
+          month: "Mes",
+          week: "Semana",
+          day: "Día",
+        }}
         localizer={localizer}
         events={events}
         startAccessor="start"
         endAccessor="end"
         style={{ height: 500 }}
-        formats= {{
+        formats={{
           dayFormat: (date, culture, localizer) =>
-          localizer.format(date, "dddd MM/YYYY", culture),
+            localizer ? localizer.format(date, "dddd D") : "",
         }}
       />
     </div>
   );
-  }
+}
