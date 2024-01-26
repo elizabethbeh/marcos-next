@@ -9,46 +9,7 @@ import { unstable_noStore as noStore } from 'next/cache';
 dayjs.locale("es");
 
 const localizer = dayjsLocalizer(dayjs);
-/* const events = [
-    {
-      title: "Evento 1",
-      start: new Date(2024, 0, 25, 10, 0), // Año, mes (enero es 0), día, hora, minutos
-      end: new Date(2024, 0, 25, 12, 0),
-    },
-    {
-      title: "Evento 2",
-      start: new Date(2024, 0, 25, 12, 0),
-      end: new Date(2024, 0, 25, 14, 0),
-    },
-    {
-      title: "Evento 3",
-      start: new Date(2024, 0, 25, 14, 0),
-      end: new Date(2024, 0, 25, 16, 0),
-    },
-    {
-      title: "Evento 4",
-      start: new Date(2024, 0, 26, 16, 0),
-      end: new Date(2024, 0, 28, 18, 0),
-    },
-    {
-      title: "Evento 5",
-      start: new Date(2024, 0, 27, 18, 0),
-      end: new Date(2024, 0, 27, 20, 0),
-    },
-    {
-      title: "Evento 6",
-      start: new Date(2024, 0, 28, 20, 0),
-      end: new Date(2024, 0, 29, 22, 0),
-    },
-    {
-      title: "Evento 7",
-      start: new Date(2024, 0, 29, 22, 0),
-      end: new Date(2024, 0, 29, 23, 59),
-    },
-  ]; */
 
-
-  
 export default function Page() {
   noStore();
   const [events, setEvents] = useState([]);  
@@ -58,10 +19,16 @@ export default function Page() {
       const response = await fetch('/api');
       const apiEvents = await response.json();
 
+      
+      const formattedEvents = apiEvents.data.map(event => ({
+        ...event,
+        start: new Date(event.start),
+        end: new Date(event.end),
+      }));
      
 
-      console.log(apiEvents["data"]);
-      setEvents(apiEvents["data"]);
+      console.log(formattedEvents);
+      setEvents(formattedEvents);
     }
 
     fetchData();

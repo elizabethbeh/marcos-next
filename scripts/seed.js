@@ -182,8 +182,8 @@ async function seedTurnos(client) {
     const insertedTurnos = await Promise.all(
       turnos.map(async (turno) => {
         return client.sql`
-        INSERT INTO turnos (startdate,starttime, enddate,endtime, title)
-        VALUES (${turno.startdate},${turno.starttime}, ${turno.enddate},${turno.endtime}, ${turno.title})
+        INSERT INTO turnos (startdate, starttime, enddate, endtime, title)
+        VALUES (${turno.startdate},${turno.starttime}, ${turno.enddate}, ${turno.endtime}, ${turno.title})
       `;
       }),
     );
