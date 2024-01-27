@@ -5,6 +5,7 @@ import dayjs from "dayjs";
 import "dayjs/locale/es";
 import { useEffect, useState } from "react";
 import { unstable_noStore as noStore } from 'next/cache';
+import React, { useCallback} from 'react'
 
 dayjs.locale("es");
 
@@ -33,7 +34,19 @@ export default function Page() {
 
     fetchData();
   }, []);
+
+
+  const handleClick = () => {
+    console.log('Click happened');
+  }
   
+
+  const handleSelectEvent = useCallback(
+    (event: { start: string | number | Date; end: string | number | Date; title: string }) => window.alert(event.title),
+    []
+  )
+
+
   return (
     <div>
       <Calendar
@@ -47,6 +60,8 @@ export default function Page() {
         }}
         localizer={localizer}
         events={events}
+        onDoubleClickEvent={handleClick}
+        onSelectEvent={handleSelectEvent}
         startAccessor="start"
         endAccessor="end"
         style={{ height: 500 }}
