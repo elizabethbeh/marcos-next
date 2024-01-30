@@ -94,7 +94,6 @@ export default function Page() {
 <Dialog open={isOpen} 
         onOpenChange={setIsOpen}
         aria-labelledby="modal-title"
-        role="dialog"
         aria-modal="true"
 >
       <DialogContent className="sm:max-w-md bg-white">
@@ -105,9 +104,8 @@ export default function Page() {
           </DialogDescription>
         </DialogHeader>
         <div className="flex items-center space-x-2">
-        <CardWithForm className="my-custom-class"
-          title="Notifications"
-          description="You have 3 unread messages."    ></CardWithForm>
+        <CardWithForm 
+         ></CardWithForm>
         </div>
         <DialogFooter className="sm:justify-start">
           <DialogClose asChild>
