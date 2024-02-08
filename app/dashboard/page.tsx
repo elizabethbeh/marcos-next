@@ -5,6 +5,7 @@ import { lusitana } from '@/app/ui/fonts';
 import { fetchRevenue, fetchLatestInvoices, fetchCardData } from '@/app/lib/data';
 import TaskForm from '@/app/ui/tasks/task-form';
 import Calendar from '@/app/ui/calendar/calendar';
+import Header from '@/app/ui/header';
  
 export default async function Page() {
   const revenue = await fetchRevenue();

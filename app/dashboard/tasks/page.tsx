@@ -1,3 +1,6 @@
+//import  Dark  from '@/components/component/dark'
+import Main from '@/components/component/main'
+
 export default function Page() {
-    return <p>Tasks Page</p>;
+    return <Main />
   }
