@@ -21,7 +21,9 @@ const links = [
   },
   { name: 'Customers', href: '/dashboard/customers', icon: UserGroupIcon },
   { name: 'Tasks', href: '/dashboard/tasks', icon: UserGroupIcon },
-  { name: 'Calendar', href: '/dashboard/calendar', icon: UserGroupIcon}
+  { name: 'Calendar', href: '/dashboard/calendar', icon: UserGroupIcon},
+  { name: 'CRUD', href: '/dashboard/crud', icon: UserGroupIcon},
+  { name: 'buscar', href: '/dashboard/buscar', icon: UserGroupIcon}
 ];
 
 export default function NavLinks() {
