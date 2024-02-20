@@ -1,9 +1,13 @@
 import Buscar from "@/components/ui/buscar";
+import { Suspense } from "react";
 
 export default function Page() {
     return (
         <div>
-        <Buscar />
+            <Suspense>
+            <Buscar placeholder="Busqueda ..." />
+            </Suspense>
+        
         </div>
     );
 }
